@@ -1,142 +1,91 @@
 # ============================================
-# 📘 READING FILES IN PYTHON
+# 📘 MEASURING EXECUTION TIME IN PYTHON
 # ============================================
 
-# Python can read different types of files:
+# Execution time = The amount of time taken by
+# a program or piece of code to run.
 #
-# 1. .txt  → Plain text
-# 2. .json → Structured data
-# 3. .csv  → Tabular data
+# Python's `time` module can be used to measure
+# execution time.
 #
-# Common file mode:
-#
-# "r" → Read mode
-#
-# `with open()` automatically closes the file
-# after reading.
+# `time.perf_counter()`
+# → Returns a high-resolution timer value.
+# → Useful for measuring how long code takes.
 
 
 # ============================================
-# 1️⃣ READING .TXT FILE
+# 1️⃣ START TIMER
 # ============================================
 
-file_path = "C:/Users/HP/Desktop/input.txt"
+import time
 
-try:
-    with open(file_path, "r") as file:
-        content = file.read()
-        print(content)
-
-except FileNotFoundError:
-    print("That file was not found")
-
-except PermissionError:
-    print("You do not have permission to read that file")
-
-
-# file.read()
-# → Reads the entire contents of the file.
+start_time = time.perf_counter()
 
 
 # ============================================
-# 2️⃣ READING .JSON FILE
+# 2️⃣ CODE TO MEASURE
 # ============================================
 
-import json
-
-file_path = "C:/Users/HP/Desktop/input.json"
-
-try:
-    with open(file_path, "r") as file:
-        content = json.load(file)
-        print(content)
-
-except FileNotFoundError:
-    print("That file was not found")
-
-except PermissionError:
-    print("You do not have permission to read that file")
-
-
-# json.load()
-# → Reads JSON data from a file.
-#
-# The JSON data is converted into a Python
-# object such as:
-# - Dictionary
-# - List
-# - String
-# - Number
+# YOUR CODE GOES HERE
 
 
 # ============================================
-# 3️⃣ READING .CSV FILE
+# 3️⃣ STOP TIMER
 # ============================================
 
-import csv
-
-file_path = "C:/Users/HP/Desktop/input.csv"
-
-try:
-    with open(file_path, "r") as file:
-
-        content = csv.reader(file)
-
-        for line in content:
-            print(line)
-
-except FileNotFoundError:
-    print("That file was not found")
-
-except PermissionError:
-    print("You do not have permission to read that file")
+end_time = time.perf_counter()
 
 
-# csv.reader()
-# → Reads rows from a CSV file.
+# ============================================
+# 4️⃣ CALCULATE EXECUTION TIME
+# ============================================
+
+elapsed_time = end_time - start_time
+
+print(f"Elapsed time: {elapsed_time:.1f} seconds")
+
+
+# ============================================
+# 📌 HOW IT WORKS
+# ============================================
+
+# Start timer
+#     ↓
+# Run your code
+#     ↓
+# Stop timer
+#     ↓
+# end_time - start_time
+#     ↓
+# Execution time
+
+
+# Example:
 #
-# Each row is returned as a list.
+# start_time = 10.5
+# end_time   = 12.3
 #
-# Example CSV:
-#
-# Name,Age,Job
-# Spongebob,30,Cook
-#
-# Output:
-#
-# ['Name', 'Age', 'Job']
-# ['Spongebob', '30', 'Cook']
+# elapsed_time = 12.3 - 10.5
+#              = 1.8 seconds
 
 
 # ============================================
 # 📌 IMPORTANT
 # ============================================
 
-# TXT:
-# file.read()
+# time.perf_counter()
+# → Best suited for measuring short execution
+#   times accurately.
 #
-# JSON:
-# json.load(file)
+# elapsed_time
+# → Stores the total time taken by the code.
 #
-# CSV:
-# csv.reader(file)
-#
-#
-# Common exceptions:
-#
-# FileNotFoundError
-# → File/path does not exist.
-#
-# PermissionError
-# → Program does not have permission
-#   to access the file.
-#
+# :.1f
+# → Displays the result with 1 decimal place.
 #
 # Remember:
 #
-# "r" → Read
-# "w" → Write
-# "a" → Append
-#
-# with open() → Automatically closes the file.
+# start_time → Before code
+# end_time   → After code
+# elapsed    → end - start
 # ============================================
